@@ -104,6 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -118,6 +119,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -127,16 +129,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ConsoleApplication.cpp" />
+    <ClCompile Include="console_manager.cpp" />
+    <ClCompile Include="data_manager.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="customer.cpp" />
     <ClCompile Include="mechanic.cpp" />
     <ClCompile Include="person.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="console_manager.h" />
     <ClInclude Include="customer.h" />
+    <ClInclude Include="data_manager.h" />
     <ClInclude Include="mechanic.h" />
     <ClInclude Include="person.h" />
     <ClInclude Include="generic_queue.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="customers.txt">
+      <DeploymentContent>true</DeploymentContent>
+    </Text>
+    <Text Include="mechanics.txt">
+      <DeploymentContent>true</DeploymentContent>
+    </Text>
+    <Text Include="default mechanics.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

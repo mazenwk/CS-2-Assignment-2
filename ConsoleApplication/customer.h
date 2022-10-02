@@ -1,5 +1,7 @@
 #pragma once
 #include "person.h"
+#include <string>
+
 
 class customer : public person {
 private:
@@ -18,5 +20,7 @@ public:
 	bool operator < (const customer& customer) const;
 	bool operator > (const customer& customer) const;
 	bool operator == (const customer& customer) const;
+
+	std::string get_data() override;
 };
 

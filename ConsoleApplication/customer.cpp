@@ -1,8 +1,12 @@
 #include "customer.h"
+#include "data_manager.h"
+#include <iostream>
+#include <string>
+
 
 customer::customer() = default;
 
-void customer::set_mechanic_id(int mechanic_id) {
+void customer::set_mechanic_id(const int mechanic_id) {
 	m_mechanic_id_ = mechanic_id;
 }
 
@@ -28,4 +32,18 @@ bool customer::operator>(const customer& customer) const {
 
 bool customer::operator==(const customer& customer) const {
 	return m_appointment_ == customer.m_appointment_;
+}
+
+std::string customer::get_data() {
+	std::string data{};
+	data += m_name_ + '\n';
+	data += std::to_string(m_age_) + '\n';
+	data += std::to_string(m_id_) + '\n';
+	data += std::to_string(m_mechanic_id_) + '\n';
+	data += m_appointment_.hours + '\n';
+	data += m_appointment_.minutes + '\n';
+
+	data += "#\n";
+
+	return data;
 }

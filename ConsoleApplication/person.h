@@ -9,6 +9,7 @@ protected:
 	int m_age_{};
 
 public:
+	virtual ~person() = default;
 	person();
 
 	void set_name(const std::string& name);
@@ -22,12 +23,14 @@ public:
 
 	void print_info() const;
 
+	virtual std::string get_data() = 0;
+
 	struct appointment {
 		appointment();
-		appointment(int hour, int minute);
+		appointment(const std::string& hour, const std::string& minute);
 
-		int hours{};
-		int minutes{};
+		std::string hours{};
+		std::string minutes{};
 
 		bool operator >(const appointment& appointment) const;
 		bool operator <(const appointment& appointment) const;

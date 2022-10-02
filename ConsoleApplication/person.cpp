@@ -4,30 +4,30 @@
 
 person::appointment::appointment() = default;
 
-person::appointment::appointment(const int hour, const int minute) {
+person::appointment::appointment(const std::string& hour, const std::string& minute) {
 	hours = hour;
 	minutes = minute;
 }
 
 bool person::appointment::operator>(const appointment& appointment) const {
-	if (hours == appointment.hours) {
-		return minutes > appointment.minutes;
+	if (std::stoi(hours) == std::stoi(appointment.hours)) {
+		return std::stoi(minutes) > std::stoi(appointment.minutes);
 	}
 
-	return hours > appointment.hours;
+	return std::stoi(hours) > std::stoi(appointment.hours);
 }
 
 bool person::appointment::operator<(const appointment& appointment) const {
-	if (hours == appointment.hours) {
-		return minutes < appointment.minutes;
+	if (std::stoi(hours) == std::stoi(appointment.hours)) {
+		return std::stoi(minutes) < std::stoi(appointment.minutes);
 	}
 
-	return hours < appointment.hours;
+	return std::stoi(hours) < std::stoi(appointment.hours);
 }
 
 bool person::appointment::operator==(const appointment& appointment) const {
-	return (hours == appointment.hours)
-		&& (minutes == appointment.minutes);
+	return (std::stoi(hours) == std::stoi(appointment.hours))
+		&& (std::stoi(minutes) == std::stoi(appointment.minutes));
 }
 
 person::person() = default;

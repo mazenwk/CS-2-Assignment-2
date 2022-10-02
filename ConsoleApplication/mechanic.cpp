@@ -1,4 +1,8 @@
 #include "mechanic.h"
+#include <iostream>
+#include <string>
+
+#include "data_manager.h"
 
 
 mechanic::mechanic() {
@@ -17,7 +21,7 @@ int mechanic::get_counter() const {
 	return m_counter_;
 }
 
-void mechanic::set_appointments(appointment* appointments, int counter) {
+void mechanic::set_appointments(appointment* appointments, const int counter) {
 	m_appointments_ = appointments;
 	m_counter_ = counter;
 }
@@ -41,4 +45,21 @@ bool mechanic::is_available(const appointment& appointment) const {
 	}
 
 	return is_available;
+}
+
+std::string mechanic::get_data() {
+	std::string data{};
+	data += m_name_ + '\n';
+	data += std::to_string(m_age_) + '\n';
+	data += std::to_string(m_id_) + '\n';
+	data += std::to_string(m_counter_) + '\n';
+
+	for (int i = 0; i < m_counter_; ++i) {
+		data += m_appointments_[i].hours + '\n';
+		data += m_appointments_[i].minutes + '\n';
+	}
+
+	data += "#\n";
+
+	return data;
 }

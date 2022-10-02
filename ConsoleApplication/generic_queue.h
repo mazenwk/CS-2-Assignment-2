@@ -1,18 +1,18 @@
 #pragma once
 template <typename T> class generic_queue {
 private:
-	T* m_ptr_{};
+	T* m_ptr_;
 	int m_size_{};
 	int m_front_index_{};
 	int m_rear_index_{};
 
 public:
-	explicit generic_queue(int size);
+	generic_queue(int size);
 	~generic_queue();
 
 	void push(T element);
 	void pop();
-	T front();
+	T* front();
 	bool is_empty() const;
 	bool is_full() const;
 	int count() const;
@@ -21,12 +21,17 @@ public:
 template <typename T>
 generic_queue<T>::generic_queue(const int size) {
 	m_size_ = size;
-	m_ptr_ = new T[m_size_ = size];
+	m_ptr_ = new T[m_size_];
 }
 
 template <typename T>
 generic_queue<T>::~generic_queue() {
-	delete[] m_ptr_;
+	try {
+		delete[] m_ptr_;
+	}
+	catch (...) {
+		delete m_ptr_;
+	}
 	m_ptr_ = nullptr;
 }
 
@@ -47,8 +52,8 @@ void generic_queue<T>::pop() {
 }
 
 template <typename T>
-T generic_queue<T>::front() { 
-	return m_ptr_[m_front_index_ == m_size_ ? 0 : m_front_index_];
+T* generic_queue<T>::front() { 
+	return &m_ptr_[m_front_index_ == m_size_ ? 0 : m_front_index_];
 }
 
 template <typename T>

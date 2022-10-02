@@ -1,5 +1,6 @@
 #pragma once
 #include "person.h"
+#include <string>
 
 class mechanic : public person {
 private:
@@ -20,5 +21,6 @@ public:
 
 	bool is_available(const appointment& appointment) const;
 
+	std::string get_data() override;
 };
 
