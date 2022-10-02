@@ -3,6 +3,8 @@
 
 #pragma region Constructors
 
+person::~person() = default;
+
 person::person() = default;
 
 #pragma endregion

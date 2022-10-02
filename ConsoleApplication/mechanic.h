@@ -19,6 +19,7 @@ public:
 	 * \brief Default Constructor
 	 */
 	mechanic();
+	~mechanic();
 
 	/**
 	 * \brief Default Parameterized Constructor.

@@ -27,7 +27,12 @@ generic_queue<T>::generic_queue(const int size) {
 template <typename T>
 generic_queue<T>::~generic_queue() {
 	try {
-		delete[] m_ptr_;
+		if (m_ptr_ != nullptr)
+		{
+			delete[] m_ptr_;
+			m_ptr_ = nullptr;
+		}
+			
 	}
 	catch (...) {
 		delete m_ptr_;

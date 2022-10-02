@@ -22,6 +22,7 @@ protected:
 	int m_age_{};
 
 public:
+	virtual ~person();
 	/**
 	 * \brief Default Constructor
 	 */

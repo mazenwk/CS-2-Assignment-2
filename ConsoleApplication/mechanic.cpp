@@ -9,6 +9,10 @@ mechanic::mechanic() {
 	m_appointments_ = new appointment[10];
 }
 
+mechanic::~mechanic() {
+	delete[] m_appointments_;
+}
+
 mechanic::mechanic(const int max_appointments=10) {
 	m_appointments_ = new appointment[max_appointments];
 }
