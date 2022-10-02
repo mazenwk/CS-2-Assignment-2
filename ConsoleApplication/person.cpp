@@ -1,6 +1,50 @@
 #include "person.h"
-
 #include <iostream>
+
+#pragma region Constructors
+
+person::person() = default;
+
+#pragma endregion
+
+#pragma region Getters & Setters
+void person::set_name(const std::string& name) {
+	m_name_ = name;
+}
+
+std::string person::get_name() {
+	return m_name_;
+}
+
+void person::set_id(const int id) {
+	m_id_ = id;
+}
+
+int person::get_id() const {
+	return m_id_;
+}
+
+void person::set_age(const int age) {
+	m_age_ = age;
+}
+
+int person::get_age() const {
+	return m_age_;
+}
+
+#pragma endregion
+
+#pragma region Methods
+
+void person::print_info() const {
+	std::cout << "Name: " << m_name_ << '\n';
+	std::cout << "ID: " << m_id_ << '\n';
+	std::cout << "Age: " << m_age_ << '\n';
+}
+
+#pragma endregion
+
+#pragma region Appointment Struct
 
 person::appointment::appointment() = default;
 
@@ -30,37 +74,4 @@ bool person::appointment::operator==(const appointment& appointment) const {
 		&& (std::stoi(minutes) == std::stoi(appointment.minutes));
 }
 
-person::person() = default;
-
-#pragma region Getters & Setters
-void person::set_name(const std::string& name) {
-	m_name_ = name;
-}
-
-std::string person::get_name() {
-	return m_name_;
-}
-
-void person::set_id(const int id) {
-	m_id_ = id;
-}
-
-int person::get_id() const {
-	return m_id_;
-}
-
-void person::set_age(const int age) {
-	m_age_ = age;
-}
-
-int person::get_age() const {
-	return m_age_;
-}
-
 #pragma endregion
-
-void person::print_info() const {
-	std::cout << "Name: " << m_name_ << '\n';
-	std::cout << "ID: " << m_id_ << '\n';
-	std::cout << "Age: " << m_age_ << '\n';
-}

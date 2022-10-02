@@ -13,45 +13,57 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Person">
+      <UniqueIdentifier>{25741a2c-2e86-4876-bee7-51d8ff8cbdcd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Person">
+      <UniqueIdentifier>{eea1e09e-4a38-4524-bb10-d6b8e7b875e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Managers">
+      <UniqueIdentifier>{5e23ba24-a366-4d17-9eef-b9301e47fb24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Managers">
+      <UniqueIdentifier>{4eb44fba-4e9d-4121-9854-461bba075a19}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="person.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="customer.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Person</Filter>
+    </ClCompile>
+    <ClCompile Include="person.cpp">
+      <Filter>Source Files\Person</Filter>
     </ClCompile>
     <ClCompile Include="mechanic.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="console_manager.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Person</Filter>
     </ClCompile>
     <ClCompile Include="data_manager.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="console_manager.cpp">
+      <Filter>Source Files\Managers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="person.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="customer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="mechanic.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="generic_queue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="console_manager.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="person.h">
+      <Filter>Header Files\Person</Filter>
+    </ClInclude>
+    <ClInclude Include="mechanic.h">
+      <Filter>Header Files\Person</Filter>
+    </ClInclude>
+    <ClInclude Include="customer.h">
+      <Filter>Header Files\Person</Filter>
     </ClInclude>
     <ClInclude Include="data_manager.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="console_manager.h">
+      <Filter>Header Files\Managers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

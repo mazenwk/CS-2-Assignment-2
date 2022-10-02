@@ -24,6 +24,9 @@ void save_all_data(const std::string& mechanics_data, const std::string& custome
  */
 int main()
 {
+	//TODO: Clear previous data from input
+	//TODO: Refactoring
+
 	const int mechanics_count{ console_manager::get_int_input("Input number of mechanics: ") };
 	const auto mechanics = get_mechanics(mechanics_file, mechanics_count);
 

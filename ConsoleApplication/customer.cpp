@@ -3,8 +3,13 @@
 #include <iostream>
 #include <string>
 
+#pragma region Constructors
 
 customer::customer() = default;
+
+#pragma endregion
+
+#pragma region Getters & Setters
 
 void customer::set_mechanic_id(const int mechanic_id) {
 	m_mechanic_id_ = mechanic_id;
@@ -22,19 +27,12 @@ person::appointment customer::get_appointment() const {
 	return m_appointment_;
 }
 
-bool customer::operator<(const customer& customer) const {
-	return m_appointment_ < customer.m_appointment_;
-}
+#pragma endregion
 
-bool customer::operator>(const customer& customer) const {
-	return m_appointment_ > customer.m_appointment_;
-}
-
-bool customer::operator==(const customer& customer) const {
-	return m_appointment_ == customer.m_appointment_;
-}
+#pragma region Methods
 
 std::string customer::get_data() {
+	// Building a string with the data
 	std::string data{};
 	data += m_name_ + '\n';
 	data += std::to_string(m_age_) + '\n';
@@ -47,3 +45,21 @@ std::string customer::get_data() {
 
 	return data;
 }
+
+#pragma endregion
+
+#pragma region Operators
+
+bool customer::operator<(const customer& customer) const {
+	return m_appointment_ < customer.m_appointment_;
+}
+
+bool customer::operator>(const customer& customer) const {
+	return m_appointment_ > customer.m_appointment_;
+}
+
+bool customer::operator==(const customer& customer) const {
+	return m_appointment_ == customer.m_appointment_;
+}
+
+#pragma endregion

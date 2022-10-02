@@ -1,9 +1,9 @@
+#include "data_manager.h"
 #include "mechanic.h"
 #include <iostream>
 #include <string>
 
-#include "data_manager.h"
-
+#pragma region Constructors
 
 mechanic::mechanic() {
 	m_appointments_ = new appointment[10];
@@ -12,6 +12,10 @@ mechanic::mechanic() {
 mechanic::mechanic(const int max_appointments=10) {
 	m_appointments_ = new appointment[max_appointments];
 }
+
+#pragma endregion
+
+#pragma region Getters & Setters
 
 void mechanic::set_counter(const int counter) {
 	m_counter_ = counter;
@@ -29,6 +33,10 @@ void mechanic::set_appointments(appointment* appointments, const int counter) {
 person::appointment* mechanic::get_appointments() const {
 	return m_appointments_;
 }
+
+#pragma endregion
+
+#pragma region Methods
 
 void mechanic::add_appointment(const appointment& appointment) {
 	m_appointments_[m_counter_] = appointment;
@@ -63,3 +71,5 @@ std::string mechanic::get_data() {
 
 	return data;
 }
+
+#pragma endregion
