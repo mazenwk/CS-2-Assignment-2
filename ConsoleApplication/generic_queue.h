@@ -1,12 +1,15 @@
 #pragma once
 template <typename T> class generic_queue {
 private:
-	T* m_ptr_;
 	int m_size_{};
 	int m_front_index_{};
 	int m_rear_index_{};
+	int m_count_{};
 
 public:
+	T* m_ptr_;
+
+
 	generic_queue(int size);
 	~generic_queue();
 
@@ -43,16 +46,25 @@ generic_queue<T>::~generic_queue() {
 template <typename T>
 void generic_queue<T>::push(T element) {
 	if (!is_full()) {
-		m_rear_index_ = m_rear_index_ + 1 > m_size_ ? 0 : ++m_rear_index_;
-		m_ptr_[m_rear_index_ == 0 ? m_rear_index_ : m_rear_index_-1] = element;
+		int element_index = m_rear_index_ + 1 > m_size_ ? 0 : m_rear_index_++;
+		if (m_rear_index_ == m_size_) {
+			m_rear_index_ = element_index + 1;
+		}
+		m_ptr_[element_index] = element;
+		m_count_++;
 	}
 }
 
 template <typename T>
 void generic_queue<T>::pop() {
 	if (!is_empty()) {
-		m_front_index_ = m_front_index_ + 1 > m_size_ ? 0 : ++m_front_index_;
-		//m_rear_index_ = m_rear_index_ == m_size_ ? 0 : ++m_rear_index_;
+		int element_index = m_front_index_ + 1 > m_size_ ? 0 : m_front_index_++;
+		if (m_front_index_ == m_size_) {
+			m_front_index_ = element_index + 1;
+		}
+
+		m_ptr_[element_index] = T();
+		m_count_--;
 	}
 }
 
@@ -63,17 +75,17 @@ T* generic_queue<T>::front() {
 
 template <typename T>
 bool generic_queue<T>::is_empty() const {
-	return m_rear_index_ == m_front_index_;
+	return m_count_ == 0;
 }
 
 template <typename T>
 bool generic_queue<T>::is_full() const {
-	return m_rear_index_ - m_front_index_ == m_size_ || m_rear_index_ - m_front_index_ == -1;
+	return m_count_ == m_size_;
 }
 
 template <typename T>
 int generic_queue<T>::count() const {
-	return m_rear_index_ - m_front_index_;
+	return m_count_;
 }
 
 

@@ -135,6 +135,7 @@
     <ClCompile Include="customer.cpp" />
     <ClCompile Include="mechanic.cpp" />
     <ClCompile Include="person.cpp" />
+    <ClCompile Include="workshop.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="console_manager.h" />
@@ -143,6 +144,7 @@
     <ClInclude Include="mechanic.h" />
     <ClInclude Include="person.h" />
     <ClInclude Include="generic_queue.h" />
+    <ClInclude Include="workshop.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="customers.txt">
