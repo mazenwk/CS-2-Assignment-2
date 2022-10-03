@@ -37,6 +37,8 @@ public:
 	 */
 	void print_info() const;
 
+	virtual std::string get_data() = 0;
+
 	/**
 	 * \brief Appointment Struct.
 	 */

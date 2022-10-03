@@ -1,6 +1,3 @@
-#define _CRTDBG_MAP_ALLOC
-#include <crtdbg.h>
-
 #include "console_manager.h"
 #include "workshop.h"
 
@@ -22,8 +19,10 @@ int main()
 	ws.output_appointments();
 	ws.save_data(mechanics_file, customers_file);
 
-	// No memory leaks; workshop data and constant strings not released yet as still in main.
-	_CrtDumpMemoryLeaks();
+//#define _CRTDBG_MAP_ALLOC
+//#include <crtdbg.h>
+//	// No memory leaks; workshop data and constant strings not released yet as still in main.
+//	_CrtDumpMemoryLeaks();
 }
 
 /*

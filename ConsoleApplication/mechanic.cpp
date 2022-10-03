@@ -60,7 +60,7 @@ bool mechanic::is_available(const appointment& appointment) const {
 	return is_available;
 }
 
-std::string mechanic::get_data() const {
+std::string mechanic::get_data() {
 	std::string data{};
 	data += m_name_ + '\n';
 	data += std::to_string(m_age_) + '\n';

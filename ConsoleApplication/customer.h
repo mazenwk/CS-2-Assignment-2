@@ -40,7 +40,7 @@ public:
 	 * \brief Gets the Customer's data in a unified string format.
 	 * \return The data of the Customer in string format. Stored in files using a unified format.
 	 */
-	[[nodiscard]] std::string get_data() const;
+	[[nodiscard]] std::string get_data() override;
 
 	/**
 	 * \brief Checks if the target Customer's appointment is after this Customer's appointment
