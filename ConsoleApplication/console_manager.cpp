@@ -1,6 +1,7 @@
 #include "console_manager.h"
 
-int console_manager::get_int_input(std::string prompt) {
+#pragma region Methods
+int console_manager::get_int_input(const std::string& prompt) {
 	std::cout << prompt;
 
 	int input{};
@@ -9,27 +10,30 @@ int console_manager::get_int_input(std::string prompt) {
 	return input;
 }
 
-mechanic console_manager::get_mechanic_info(const int index) {
-	auto m = mechanic();
+void console_manager::get_mechanic_info(const int index, mechanic *m) {
 
 	std::cout << "Mechanic #" << index + 1 << ":\n";
 
 	std::cout << "Input mechanic's name: ";
 	std::string name;
 	std::cin >> name;
-	m.set_name(name);
 
-	return m;
+	std::cout << "Input mechanic's Id: ";
+	int id;
+	std::cin >> id;
+
+	m->set_name(name);
+	m->set_id(id);
+
 }
 
-customer console_manager::get_customer_info(const int index) {
-	auto c = customer();
+void console_manager::get_customer_info(const int index, customer* c) {
 	std::cout << "Customer #" << index + 1 << ":\n";
 
 	std::cout << "Input customer's name: ";
 	std::string name;
 	std::cin >> name;
-	c.set_name(name);
+	c->set_name(name);
 
 	std::cout << "Input customer's appointment hour: ";
 	std::string hour;
@@ -39,7 +43,7 @@ customer console_manager::get_customer_info(const int index) {
 	std::string minute;
 	std::cin >> minute;
 
-	c.set_appointment(person::appointment(hour, minute));
-
-	return c;
+	c->set_appointment(person::appointment(hour, minute));
 }
+
+#pragma endregion

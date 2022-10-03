@@ -2,21 +2,13 @@
 #include "person.h"
 #include <string>
 
-class mechanic : public person {
-private:
-	/**
-	 * \brief Number of Appointments for this Mechanic.
-	 */
-	int m_counter_{};
-
-	/**
-	 * \brief The Appointments for this Mechanic.
-	 */
-	appointment* m_appointments_{};
-
+/**
+ * \brief The Mechanic Class.
+ */
+class mechanic: public person {
 public:
 	/**
-	 * \brief Default Constructor
+	 * \brief Default Constructor.
 	 */
 	mechanic();
 	~mechanic();
@@ -59,7 +51,7 @@ public:
 	/**
 	 * \brief Checks if the Target Appointment time slot is available for this Mechanic.
 	 * \param appointment The Target Appointment to compare Against.
-	 * \return Whether or not this Appointment time slot is available.
+	 * \return True if this Appointment time slot is available.
 	 */
 	[[nodiscard]] bool is_available(const appointment& appointment) const;
 
@@ -67,6 +59,17 @@ public:
 	 * \brief Gets the Mechanic's data in a unified string format.
 	 * \return The data of the Mechanic in string format. Stored in files using a unified format.
 	 */
-	std::string get_data() override;
+	[[nodiscard]] std::string get_data() const;
+
+private:
+	/**
+	 * \brief Number of Appointments for this Mechanic.
+	 */
+	int m_counter_{};
+
+	/**
+	 * \brief The Appointments for this Mechanic.
+	 */
+	appointment* m_appointments_{};
 };
 

@@ -31,7 +31,7 @@ person::appointment customer::get_appointment() const {
 
 #pragma region Methods
 
-std::string customer::get_data() {
+std::string customer::get_data() const{
 	// Building a string with the data
 	std::string data{};
 	data += m_name_ + '\n';

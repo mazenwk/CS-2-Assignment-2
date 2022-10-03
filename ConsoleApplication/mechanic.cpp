@@ -3,18 +3,19 @@
 #include <iostream>
 #include <string>
 
-#pragma region Constructors
+#pragma region Constructors & Destructors
 
 mechanic::mechanic() {
 	m_appointments_ = new appointment[10];
 }
 
-mechanic::~mechanic() {
-	delete[] m_appointments_;
-}
-
 mechanic::mechanic(const int max_appointments=10) {
 	m_appointments_ = new appointment[max_appointments];
+}
+
+mechanic::~mechanic() {
+	delete[] m_appointments_;
+	m_appointments_ = nullptr;
 }
 
 #pragma endregion
@@ -59,7 +60,7 @@ bool mechanic::is_available(const appointment& appointment) const {
 	return is_available;
 }
 
-std::string mechanic::get_data() {
+std::string mechanic::get_data() const {
 	std::string data{};
 	data += m_name_ + '\n';
 	data += std::to_string(m_age_) + '\n';

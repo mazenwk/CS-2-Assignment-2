@@ -3,6 +3,8 @@
 #include <fstream>
 #include <iostream>
 
+#pragma region Methods
+
 void data_manager::save_data_in_file(const std::string& file_name, const std::string& content) {
 	std::ofstream out_file;
 
@@ -151,3 +153,5 @@ void data_manager::load_customers_from_file(const std::string& file_name, const 
 
 	in_file.close();
 }
+
+#pragma endregion

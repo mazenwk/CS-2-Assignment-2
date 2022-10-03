@@ -1,24 +1,82 @@
 #pragma once
+
+/**
+ * \brief A Generic (Circular) Queue.
+ * \tparam T Type of object in the Queue.
+ */
 template <typename T> class generic_queue {
-private:
-	int m_size_{};
-	int m_front_index_{};
-	int m_rear_index_{};
-	int m_count_{};
-
 public:
-	T* m_ptr_;
+	/**
+	 * \brief Default Constructor.
+	 * \param size Size of the queue.
+	 */
+	explicit generic_queue(int size);
 
-
-	generic_queue(int size);
+	/**
+	 * \brief Destructor
+	 */
 	~generic_queue();
 
+	/**
+	 * \brief Pushes an element to the end of the Queue.
+	 * \param element Element to push into the Queue.
+	 */
 	void push(T element);
+
+	/**
+	 * \brief Pops the first element in the Queue.
+	 */
 	void pop();
+
+	/**
+	 * \brief Gets the address of the front (first element) of the Queue.
+	 * \return Address of the first element in the Queue.
+	 */
 	T* front();
-	bool is_empty() const;
-	bool is_full() const;
-	int count() const;
+
+	/**
+	 * \brief Checks whether or not the Queue is empty.
+	 * \return True if Queue is empty.
+	 */
+	[[nodiscard]] bool is_empty() const;
+
+	/**
+	 * \brief Checks whether or not the Queue is full.
+	 * \return True if Queue is full.
+	 */
+	[[nodiscard]] bool is_full() const;
+
+	/**
+	 * \brief Gets the number of populated elements in the Queue.
+	 * \return Number of populated elements in the Queue.
+	 */
+	[[nodiscard]] int count() const;
+
+private:
+	/**
+	 * \brief Dynamic array to hold queue elements.
+	 */
+	T* m_ptr_;
+
+	/**
+	 * \brief Size of the dynamic array.
+	 */
+	int m_size_{};
+
+	/**
+	 * \brief The Index of the Queue's Front
+	 */
+	int m_front_index_{};
+
+	/**
+	 * \brief The Index of the Queue's Rear
+	 */
+	int m_rear_index_{};
+
+	/**
+	 * \brief The number of populated elements in the Queue.
+	 */
+	int m_count_{};
 };
 
 template <typename T>
@@ -33,7 +91,6 @@ generic_queue<T>::~generic_queue() {
 		if (m_ptr_ != nullptr)
 		{
 			delete[] m_ptr_;
-			m_ptr_ = nullptr;
 		}
 			
 	}

@@ -5,24 +5,7 @@
  * \brief The Person Class.
  */
 class person {
-protected:
-	/**
-	 * \brief The Person's Name
-	 */
-	std::string m_name_{};
-
-	/**
-	 * \brief The Person's ID
-	 */
-	int m_id_{};
-
-	/**
-	 * \brief The Person's Age
-	 */
-	int m_age_{};
-
 public:
-	virtual ~person();
 	/**
 	 * \brief Default Constructor
 	 */
@@ -55,12 +38,6 @@ public:
 	void print_info() const;
 
 	/**
-	 * \brief [Pure Virtual] Gets the Data of the Person in a unified string form.
-	 * \return The Data of the Person.
-	 */
-	virtual std::string get_data() = 0;
-
-	/**
 	 * \brief Appointment Struct.
 	 */
 	struct appointment {
@@ -88,22 +65,38 @@ public:
 		/**
 		 * \brief  Checks if the Target Appointment is before this Appointment.
 		 * \param appointment The Target Appointment to compare against.
-		 * \return Whether or not the Target Appointment is before this Appointment.
+		 * \return True if the Target Appointment is before this Appointment.
 		 */
 		bool operator <(const appointment& appointment) const;
 		/**
 		 * \brief  Checks if the Target Appointment is after this Appointment.
 		 * \param appointment The Target Appointment to compare against.
-		 * \return Whether or not the Target Appointment is after this Appointment.
+		 * \return True if the Target Appointment is after this Appointment.
 		 */
 		bool operator >(const appointment& appointment) const;
 
 		/**
 		 * \brief  Checks if the Target Appointment is equal to this Appointment.
 		 * \param appointment The Target Appointment to compare against.
-		 * \return Whether or not the Target Appointment is equal to this Appointment.
+		 * \return True if the Target Appointment is equal to this Appointment.
 		 */
 		bool operator ==(const appointment& appointment) const;
 	};
+
+protected:
+	/**
+	 * \brief The Person's Name
+	 */
+	std::string m_name_{};
+
+	/**
+	 * \brief The Person's ID
+	 */
+	int m_id_{};
+
+	/**
+	 * \brief The Person's Age
+	 */
+	int m_age_{};
 };
 
