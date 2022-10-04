@@ -1,6 +1,7 @@
 #pragma once
 #include "person.h"
 #include <string>
+#include <vector>
 
 /**
  * \brief The Mechanic Class.
@@ -11,13 +12,6 @@ public:
 	 * \brief Default Constructor.
 	 */
 	mechanic();
-	~mechanic();
-
-	/**
-	 * \brief Default Parameterized Constructor.
-	 * \param max_appointments Maximum number of Appointments for this Mechanic.
-	 */
-	explicit mechanic(int max_appointments);
 
 	/**
 	 * \brief Sets the number of Appointments for this Mechanic.
@@ -35,12 +29,12 @@ public:
 	 * \param appointments The Appointments for this Mechanic.
 	 * \param counter Number of Appointments for this Mechanic.
 	 */
-	void set_appointments(appointment* appointments, int counter);
+	void set_appointments(const std::vector<appointment>& appointments);
 	/**
 	 * \brief Gets the Appointments for this Mechanic.
 	 * \return The Appointments for this Mechanic.
 	 */
-	[[nodiscard]] appointment* get_appointments() const;
+	[[nodiscard]] std::vector<appointment> get_appointments() const;
 
 	/**
 	 * \brief Adds an Appointment to this Mechanic.
@@ -70,6 +64,6 @@ private:
 	/**
 	 * \brief The Appointments for this Mechanic.
 	 */
-	appointment* m_appointments_{};
+	std::vector<appointment> m_appointments_{};
 };
 

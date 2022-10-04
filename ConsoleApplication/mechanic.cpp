@@ -1,22 +1,10 @@
-#include "data_manager.h"
 #include "mechanic.h"
 #include <iostream>
 #include <string>
 
 #pragma region Constructors & Destructors
 
-mechanic::mechanic() {
-	m_appointments_ = new appointment[10];
-}
-
-mechanic::mechanic(const int max_appointments=10) {
-	m_appointments_ = new appointment[max_appointments];
-}
-
-mechanic::~mechanic() {
-	delete[] m_appointments_;
-	m_appointments_ = nullptr;
-}
+mechanic::mechanic() = default;
 
 #pragma endregion
 
@@ -30,12 +18,12 @@ int mechanic::get_counter() const {
 	return m_counter_;
 }
 
-void mechanic::set_appointments(appointment* appointments, const int counter) {
+void mechanic::set_appointments(const std::vector<appointment>& appointments) {
 	m_appointments_ = appointments;
-	m_counter_ = counter;
+	m_counter_ = static_cast<int>(appointments.size());
 }
 
-person::appointment* mechanic::get_appointments() const {
+std::vector<person::appointment> mechanic::get_appointments() const {
 	return m_appointments_;
 }
 
@@ -44,7 +32,7 @@ person::appointment* mechanic::get_appointments() const {
 #pragma region Methods
 
 void mechanic::add_appointment(const appointment& appointment) {
-	m_appointments_[m_counter_] = appointment;
+	m_appointments_.push_back(appointment);
 	m_counter_++;
 }
 
