@@ -27,7 +27,6 @@ public:
 	/**
 	 * \brief Sets the Appointments for this Mechanic.
 	 * \param appointments The Appointments for this Mechanic.
-	 * \param counter Number of Appointments for this Mechanic.
 	 */
 	void set_appointments(const std::vector<appointment>& appointments);
 	/**
