@@ -2,6 +2,8 @@
 
 /**
  * \brief A Generic (Circular) Queue.
+ * Front Index points to the Front Object.
+ * Rear Index points to the next free cell (if any).
  * \tparam T Type of object in the Queue.
  */
 template <typename T> class generic_queue {
