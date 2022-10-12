@@ -15,7 +15,7 @@ int main()
 {
 	const int mechanics_count{ console_manager::get_int_input("Input number of mechanics: ") };
 	const int customers_count{ console_manager::get_int_input("Input number of customers: ") };
-	const auto ws = workshop(mechanics_count, customers_count);
+	auto ws = workshop(mechanics_count, customers_count);
 
 	ws.get_data(mechanics_file, customers_file);
 	ws.process_customers();

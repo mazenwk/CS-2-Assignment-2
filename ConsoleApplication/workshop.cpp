@@ -3,6 +3,7 @@
 #include "mechanic.h"
 #include "workshop.h"
 #include <string>
+#include <vector>
 
 #pragma region Constructors & Destructors
 
@@ -10,14 +11,10 @@ workshop::workshop(const int mechanic_count, const int customers_count) {
 	set_mechanics_count(mechanic_count);
 	set_customers_count(customers_count);
 
-	m_mechanics_ = new mechanic[m_mechanics_count_];
 	m_customers_ = new generic_queue<customer>(m_customers_count_);
 }
 
 workshop::~workshop() {
-	delete[] m_mechanics_;
-	m_mechanics_ = nullptr;
-
 	delete m_customers_;
 	m_customers_ = nullptr;
 }
@@ -31,7 +28,7 @@ void workshop::set_mechanics_count(const int count) {
 }
 
 int workshop::get_mechanics_count() const {
-	return m_mechanics_count_;
+	return static_cast<int>(m_mechanics_.size());
 }
 
 void workshop::set_customers_count(const int count) {
@@ -42,7 +39,7 @@ int workshop::get_customers_count() const {
 	return m_customers_->count();
 }
 
-mechanic* workshop::get_mechanics() const {
+std::vector<mechanic> workshop::get_mechanics() const {
 	return m_mechanics_;
 }
 
@@ -54,12 +51,12 @@ generic_queue<customer>* workshop::get_customers() const {
 
 #pragma region Methods
 
-void workshop::get_data(const std::string& mechanics_file, const std::string& customers_file) const {
+void workshop::get_data(const std::string& mechanics_file, const std::string& customers_file) {
 	get_mechanics(mechanics_file);
 	get_customers(customers_file);
 }
 
-void workshop::process_customers() const {
+void workshop::process_customers() {
 	int current_mechanic_index{};
 	int rejected_count{};
 	int processed_customers{};
@@ -94,7 +91,7 @@ void workshop::process_customers() const {
 	}
 }
 
-void workshop::output_appointments() const {
+void workshop::output_appointments() {
 	bubble_sort_customers();
 
 	for (int i = 0; i < get_customers_count(); ++i) {
@@ -107,7 +104,7 @@ void workshop::output_appointments() const {
 	}
 }
 
-void workshop::save_data(const std::string& mechanics_file, const std::string& customers_file) const {
+void workshop::save_data(const std::string& mechanics_file, const std::string& customers_file) {
 
 	std::string mechanics_data{};
 	for (int i = 0; i < get_mechanics_count(); ++i) {
@@ -115,36 +112,33 @@ void workshop::save_data(const std::string& mechanics_file, const std::string& c
 	}
 
 	std::string customers_data{};
-	const int size = m_customers_->count();
-	const auto array = new customer[size];
 
-	for (int i = 0; i < size; ++i) {
-		array[i] = *m_customers_->front();
-		customers_data += array[i].get_data();
+	for (int i = 0; i < m_customers_->count(); ++i) {
+		const customer temp_customer = *m_customers_->front();
+		customers_data += m_customers_->front()->get_data();
 		m_customers_->pop();
-		m_customers_->push(array[i]);
+		m_customers_->push(temp_customer);
 	}
-
-	delete[] array;
 
 	data_manager::save_data_in_file(mechanics_file, mechanics_data);
 	data_manager::save_data_in_file(customers_file, customers_data);
 
 }
 
-void workshop::get_mechanics(const std::string& file_name) const {
-	data_manager::load_mechanics_from_file(file_name, m_mechanics_count_, m_mechanics_);
-	if (m_mechanics_[0].get_name().empty()) {
-		for (int i = 0; i < m_mechanics_count_; ++i) {
+void workshop::get_mechanics(const std::string& file_name) {
+	data_manager::load_mechanics_from_file(file_name, m_mechanics_);
+	if (static_cast<int>(m_mechanics_.size()) != m_mechanics_count_) {
+		for (int i = static_cast<int>(m_mechanics_.size()); i < m_mechanics_count_; ++i) {
+			m_mechanics_.emplace_back();
 			console_manager::get_mechanic_info(i, &m_mechanics_[i]);
 		}
 	}
 }
 
-void workshop::get_customers(const std::string& file_name) const {
+void workshop::get_customers(const std::string& file_name) {
 	data_manager::load_customers_from_file(file_name, m_customers_count_, m_customers_);
-	if (m_customers_->count() == 0) {
-		for (int i = 0; i < m_customers_count_; ++i) {
+	if (m_customers_->count() != m_customers_count_) {
+		for (int i = m_customers_->count(); i < m_customers_count_; ++i) {
 			auto m = customer();
 			console_manager::get_customer_info(i, &m);
 
@@ -193,7 +187,7 @@ void workshop::bubble_sort_customers() const {
 	delete[] array;
 }
 
-std::string workshop::get_mechanic_name_by_id(const int id) const {
+std::string workshop::get_mechanic_name_by_id(const int id) {
 	for (int i = 0; i < get_mechanics_count(); ++i) {
 		if (m_mechanics_[i].get_id() == id) {
 			return m_mechanics_[i].get_name();

@@ -24,7 +24,7 @@ public:
 	 * \param mechanics_count Number of Mechanics.
 	 * \param mechanics Mechanics Array.
 	 */
-	static void load_mechanics_from_file(const std::string& file_name, int mechanics_count, mechanic* mechanics);
+	static void load_mechanics_from_file(const std::string& file_name, std::vector<mechanic>& mechanics);
 
 	/**
 	 * \brief Reads the given number of customers from the

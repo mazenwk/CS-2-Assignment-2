@@ -1,5 +1,6 @@
 #pragma once
 #include "generic_queue.h"
+#include <vector>
 
 /**
  * \brief Workshop Class.
@@ -37,10 +38,10 @@ public:
 	[[nodiscard]] int get_customers_count() const;
 
 	/**
-	 * \brief Gets the Workshop's Mechanics Array.
-	 * \return Mechanics Dynamic Array.
+	 * \brief Gets the Workshop's Mechanics Vector.
+	 * \return Mechanics Vector.
 	 */
-	[[nodiscard]] mechanic* get_mechanics() const;
+	[[nodiscard]] std::vector<mechanic> get_mechanics() const;
 
 	/**
 	 * \brief Gets the Workshop's Customers Queue.
@@ -53,24 +54,24 @@ public:
 	 * \param mechanics_file Mechanics file name.
 	 * \param customers_file Customers file name.
 	 */
-	void get_data(const std::string& mechanics_file, const std::string& customers_file) const;
+	void get_data(const std::string& mechanics_file, const std::string& customers_file);
 
 	/**
 	 * \brief Processes the customers through the mechanics schedules.
 	 */
-	void process_customers() const;
+	void process_customers();
 
 	/**
 	 * \brief Outputs scheduled customer appointments.
 	 */
-	void output_appointments() const;
+	void output_appointments();
 
 	/**
 	 * \brief Saves the processed data back into files.
 	 * \param mechanics_file Mechanics file name.
 	 * \param customers_file Customers file name.
 	 */
-	void save_data(const std::string& mechanics_file, const std::string& customers_file) const;
+	void save_data(const std::string& mechanics_file, const std::string& customers_file);
 
 	/**
 	 * \brief Destructor.
@@ -89,9 +90,9 @@ private:
 	int m_customers_count_{};
 
 	/**
-	 * \brief Mechanics Array.
+	 * \brief Mechanics Vector.
 	 */
-	mechanic* m_mechanics_{};
+	std::vector<mechanic> m_mechanics_{};
 
 	/**
 	 * \brief Customers Queue.
@@ -102,13 +103,13 @@ private:
 	 * \brief Loads the Mechanics data (if any) from the file.
 	 * \param file_name Mechanics file name.
 	 */
-	void get_mechanics(const std::string& file_name) const;
+	void get_mechanics(const std::string& file_name);
 
 	/**
 	 * \brief Loads the Customers data (if any) from the file.
 	 * \param file_name Customers file name.
 	 */
-	void get_customers(const std::string& file_name) const;
+	void get_customers(const std::string& file_name);
 
 	/**
 	 * \brief Bubble Sorts the Customers Queue.
@@ -120,6 +121,6 @@ private:
 	 * \param id The ID of the Mechanic to search for.
 	 * \return The Target Mechanic's Name, if found.
 	 */
-	[[nodiscard]] std::string get_mechanic_name_by_id(const int id) const;
+	[[nodiscard]] std::string get_mechanic_name_by_id(const int id);
 };
 

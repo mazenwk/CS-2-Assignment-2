@@ -2,6 +2,7 @@
 #include "generic_queue.h"
 #include <fstream>
 #include <iostream>
+#include <vector>
 
 #pragma region Methods
 
@@ -20,7 +21,7 @@ void data_manager::save_data_in_file(const std::string& file_name, const std::st
 	out_file.close();
 }
 
-void data_manager::load_mechanics_from_file(const std::string& file_name, int mechanics_count, mechanic* mechanics) {
+void data_manager::load_mechanics_from_file(const std::string& file_name, std::vector<mechanic>& mechanics) {
 	std::ifstream in_file(file_name);
 	std::string line{};
 
@@ -30,25 +31,28 @@ void data_manager::load_mechanics_from_file(const std::string& file_name, int me
 
 	int data_count{};
 	int index{};
+	auto current_mechanic = mechanic();
 	while (std::getline(in_file, line)) {
 		
 		if (line.find('#') != std::string::npos) {
+			mechanics.push_back(current_mechanic);
 			index++;
 			data_count = 0;
+			current_mechanic = mechanic();
 			continue;
 		}
 
  		switch (data_count) {
 			case 0:
-				mechanics[index].set_name(line);
+				current_mechanic.set_name(line);
 				data_count++;
 				break;
 			case 1:
-				mechanics[index].set_age(std::stoi(line));
+				current_mechanic.set_age(std::stoi(line));
 				data_count++;
 				break;
 			case 2:
-				mechanics[index].set_id(std::stoi(line));
+				current_mechanic.set_id(std::stoi(line));
 				data_count++;
 				break;
 			case 3:
@@ -67,7 +71,7 @@ void data_manager::load_mechanics_from_file(const std::string& file_name, int me
 				}
 
 				if (got_hours && got_minutes) {
-					mechanics[index].add_appointment(app);
+					current_mechanic.add_appointment(app);
 					got_hours = got_minutes = false;
 				}
 
